@@ -1,5 +1,5 @@
-// Package mock provides a mock implementation of UART interfaces for testing.
-package mock
+// Package mockhw provides a mock implementation of UART interfaces for testing.
+package mockhw
 
 import (
 	"bytes"

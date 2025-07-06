@@ -1,4 +1,4 @@
-# MockHW - Go Mock Hardware Interfaces
+# MockHW - Go Hardware Interface Mocks
 
 A Go library providing mock implementations of common hardware interfaces for testing embedded systems code.
 
@@ -13,7 +13,7 @@ A Go library providing mock implementations of common hardware interfaces for te
 ## Installation
 
 ```bash
-go get github.com/mockhw
+go get github.com/m-s-sh/mockhw
 ```
 
 ## Usage
@@ -22,13 +22,13 @@ go get github.com/mockhw
 
 ```go
 import (
-    "github.com/mockhw/mock"
+    "github.com/m-s-sh/mockhw"
     "testing"
 )
 
 func TestDeviceWithUart(t *testing.T) {
     // Create a mock UART with a maximum delay of 10ms
-    uart := mock.NewUart(10)
+    uart := mockhw.NewUart(10)
     
     // Inject test data to be read by the device under test
     uart.SetRxBuffer([]byte("test data"))
@@ -45,7 +45,7 @@ func TestDeviceWithUart(t *testing.T) {
 }
 ```
 
-## Mock Interfaces
+## Hardware Interfaces
 
 ### Uart
 
