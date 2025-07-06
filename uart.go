@@ -105,8 +105,8 @@ func (m *Uart) SetRxBuffer(data []byte) (n int, err error) {
 	return n, err
 }
 
-// GetTxBuffer returns the contents of the transmission buffer.
+// TxBuffer returns the contents of the transmission buffer.
 // This is useful for testing to verify what data was sent.
-func (m *Uart) GetTxBuffer() []byte {
+func (m *Uart) TxBuffer() []byte {
 	return m.txBuffer.Bytes()
 }

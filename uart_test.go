@@ -19,7 +19,7 @@ func TestUart_Write(t *testing.T) {
 		t.Errorf("Expected to write %d bytes, got %d", len(testData), n)
 	}
 
-	txData := uart.GetTxBuffer()
+	txData := uart.TxBuffer()
 	if !bytes.Equal(txData, testData) {
 		t.Errorf("Expected tx buffer to contain %q, got %q", testData, txData)
 	}

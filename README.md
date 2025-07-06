@@ -40,7 +40,7 @@ func TestDeviceWithUart(t *testing.T) {
     device.ProcessInput()
     
     // Verify data written by the device to the UART
-    txData := uart.GetTxBuffer()
+    txData := uart.TxBuffer()
     // Assert on txData...
 }
 ```
@@ -62,7 +62,7 @@ The `Uart` struct implements interfaces typically used for UART communication. I
 - `Write(p []byte) (n int, err error)` - Writes data to the transmission buffer
 - `Buffered() int` - Returns number of bytes available for reading
 - `SetRxBuffer(data []byte) (n int, err error)` - Sets data to be read
-- `GetTxBuffer() []byte` - Gets data written to the UART
+- `TxBuffer() []byte` - Gets data written to the UART
 
 ## Contributing
 
