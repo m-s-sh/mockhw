@@ -2,6 +2,8 @@
 
 A Go library providing mock implementations of common hardware interfaces for testing embedded systems code.
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/m-s-sh/mockhw.svg)](https://pkg.go.dev/github.com/m-s-sh/mockhw)
+
 ## Features
 
 - **UART Mock**: A simulated UART (Universal Asynchronous Receiver-Transmitter) interface with:
