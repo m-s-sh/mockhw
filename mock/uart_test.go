@@ -1,4 +1,4 @@
-package uart
+package mock
 
 import (
 	"bytes"
@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-func TestMockUART_Write(t *testing.T) {
-	uart := NewMockUART(0)
+func TestUart_Write(t *testing.T) {
+	uart := NewUart(0)
 	testData := []byte("UART test data")
 
 	n, err := uart.Write(testData)
@@ -25,8 +25,8 @@ func TestMockUART_Write(t *testing.T) {
 	}
 }
 
-func TestMockUART_ReadInChunks(t *testing.T) {
-	uart := NewMockUART(0)
+func TestUart_ReadInChunks(t *testing.T) {
+	uart := NewUart(0)
 	testData := []byte("UART received data")
 
 	n, err := uart.SetRxBuffer(testData)
@@ -60,10 +60,10 @@ func TestMockUART_ReadInChunks(t *testing.T) {
 	}
 }
 
-func TestMockUART_Delay(t *testing.T) {
+func TestUart_Delay(t *testing.T) {
 	// Use a significant delay that we can measure
 	delayMs := 50
-	uart := NewMockUART(delayMs)
+	uart := NewUart(delayMs)
 
 	// Add some data to read
 	uart.SetRxBuffer([]byte("test"))
