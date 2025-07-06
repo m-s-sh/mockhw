@@ -7,19 +7,19 @@ import (
 	"time"
 )
 
-// Uart implements the UART interface for testing purposes.
+// UART implements the UART interface for testing purposes.
 // It simulates real UART behavior with random delays during reading.
-type Uart struct {
+type UART struct {
 	txBuffer     *bytes.Buffer // Buffer for transmitted data
 	rxBuffer     *bytes.Buffer // Buffer for received data
 	maxDelay     time.Duration // Maximum delay for read operations
 	availableLen int           // Number of bytes reported as available/buffered
 }
 
-// NewUart creates a new Uart instance.
+// NewUART creates a new UART instance.
 // maxDelayMs is the maximum delay in milliseconds for read operations.
-func NewUart(maxDelayMs int) *Uart {
-	return &Uart{
+func NewUART(maxDelayMs int) *UART {
+	return &UART{
 		txBuffer:     bytes.NewBuffer(nil),
 		rxBuffer:     bytes.NewBuffer(nil),
 		maxDelay:     time.Duration(maxDelayMs) * time.Millisecond,
@@ -29,7 +29,7 @@ func NewUart(maxDelayMs int) *Uart {
 
 // updateAvailableBytes recalculates the number of available bytes to read
 // to simulate UART hardware FIFO buffer behavior
-func (m *Uart) updateAvailableBytes() {
+func (m *UART) updateAvailableBytes() {
 	totalBytes := m.rxBuffer.Len()
 	if totalBytes == 0 {
 		m.availableLen = 0
@@ -54,7 +54,7 @@ func (m *Uart) updateAvailableBytes() {
 // Read implements the io.Reader interface.
 // It reads up to len(p) bytes into p with a random delay and in random chunk sizes
 // to simulate real UART behavior.
-func (m *Uart) Read(p []byte) (n int, err error) {
+func (m *UART) Read(p []byte) (n int, err error) {
 	// Simulate real UART delay
 	if m.maxDelay > 0 {
 		delay := time.Duration(rand.Int63n(int64(m.maxDelay)))
@@ -87,19 +87,19 @@ func (m *Uart) Read(p []byte) (n int, err error) {
 
 // Write implements the io.Writer interface.
 // It writes len(p) bytes from p to the UART's tx buffer.
-func (m *Uart) Write(p []byte) (n int, err error) {
+func (m *UART) Write(p []byte) (n int, err error) {
 	return m.txBuffer.Write(p)
 }
 
 // Buffered returns the number of bytes that can be read from the rx buffer.
 // This simulates how real UARTs report only what's in their hardware FIFO.
-func (m *Uart) Buffered() int {
+func (m *UART) Buffered() int {
 	return m.availableLen
 }
 
 // SetRxBuffer writes data to the rx buffer to simulate data reception.
 // This is useful for testing when you need to simulate incoming data.
-func (m *Uart) SetRxBuffer(data []byte) (n int, err error) {
+func (m *UART) SetRxBuffer(data []byte) (n int, err error) {
 	n, err = m.rxBuffer.Write(data)
 	m.updateAvailableBytes()
 	return n, err
@@ -107,6 +107,6 @@ func (m *Uart) SetRxBuffer(data []byte) (n int, err error) {
 
 // TxBuffer returns the contents of the transmission buffer.
 // This is useful for testing to verify what data was sent.
-func (m *Uart) TxBuffer() []byte {
+func (m *UART) TxBuffer() []byte {
 	return m.txBuffer.Bytes()
 }

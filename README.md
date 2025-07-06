@@ -26,15 +26,15 @@ import (
     "testing"
 )
 
-func TestDeviceWithUart(t *testing.T) {
+func TestDeviceWithUART(t *testing.T) {
     // Create a mock UART with a maximum delay of 10ms
-    uart := mockhw.NewUart(10)
+    uart := mockhw.NewUART(10)
     
     // Inject test data to be read by the device under test
     uart.SetRxBuffer([]byte("test data"))
     
     // Pass the mock UART to your device under test
-    device := NewDeviceWithUart(uart)
+    device := NewDeviceWithUART(uart)
     
     // Perform operations with your device
     device.ProcessInput()
@@ -47,9 +47,9 @@ func TestDeviceWithUart(t *testing.T) {
 
 ## Hardware Interfaces
 
-### Uart
+### UART
 
-The `Uart` struct implements interfaces typically used for UART communication. It simulates:
+The `UART` struct implements interfaces typically used for UART communication. It simulates:
 
 - Random delays in reading data (configurable)
 - Hardware FIFO buffer behavior
@@ -57,7 +57,7 @@ The `Uart` struct implements interfaces typically used for UART communication. I
 
 #### Methods
 
-- `NewUart(maxDelayMs int) *Uart` - Creates a new UART mock with specified max delay
+- `NewUART(maxDelayMs int) *UART` - Creates a new UART mock with specified max delay
 - `Read(p []byte) (n int, err error)` - Reads data with simulated hardware behavior
 - `Write(p []byte) (n int, err error)` - Writes data to the transmission buffer
 - `Buffered() int` - Returns number of bytes available for reading

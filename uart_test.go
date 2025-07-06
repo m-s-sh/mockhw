@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-func TestUart_Write(t *testing.T) {
-	uart := NewUart(0)
+func TestUART_Write(t *testing.T) {
+	uart := NewUART(0)
 	testData := []byte("UART test data")
 
 	n, err := uart.Write(testData)
@@ -25,8 +25,8 @@ func TestUart_Write(t *testing.T) {
 	}
 }
 
-func TestUart_ReadInChunks(t *testing.T) {
-	uart := NewUart(0)
+func TestUART_ReadInChunks(t *testing.T) {
+	uart := NewUART(0)
 	testData := []byte("UART received data")
 
 	n, err := uart.SetRxBuffer(testData)
@@ -60,10 +60,10 @@ func TestUart_ReadInChunks(t *testing.T) {
 	}
 }
 
-func TestUart_Delay(t *testing.T) {
+func TestUART_Delay(t *testing.T) {
 	// Use a significant delay that we can measure
 	delayMs := 50
-	uart := NewUart(delayMs)
+	uart := NewUART(delayMs)
 
 	// Add some data to read
 	uart.SetRxBuffer([]byte("test"))
