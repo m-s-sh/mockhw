@@ -64,10 +64,6 @@ The `Uart` struct implements interfaces typically used for UART communication. I
 - `SetRxBuffer(data []byte) (n int, err error)` - Sets data to be read
 - `GetTxBuffer() []byte` - Gets data written to the UART
 
-## License
-
-MIT
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
